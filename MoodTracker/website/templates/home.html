@@ -1,0 +1,35 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
+  %}
+  <style>
+   h1{
+     font-weight: bold;
+     color: #72B3DA;
+     font-family: 'Tahoma';
+  
+  
+   }
+  </style>
+  <br>
+  <h1 align="center">My Mood</h1>
+  <ul class="list-group list-group-flush" id="notes">
+   {% for note in user.notes %}
+   <li class="list-group-item" style="font-weight: bold">
+     {{ note.data }}
+     <br>
+     <span class="note-date" style="font-weight: normal">Date: {{ note.date.strftime('%Y-%m-%d %H:%M:%S') }}</span>
+
+     <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+       <span aria-hidden="true">&times;</span>
+     </button>
+   </li>
+   {% endfor %}
+  </ul>
+  <form method="POST">
+    <textarea name="note" id="note" class="form-control" placeholder="how are you feeling today?"></textarea>
+   <br />
+   <div align="center">
+     <button type="submit" class="btn btn-primary"style="background-color: #5A9CC3;">Add Note</button>
+   </div>
+  </form>
+  {% endblock %}
+  
